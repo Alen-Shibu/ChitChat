@@ -11,6 +11,7 @@
   "author": "Alen Shibu",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "chitchat": "file:..",
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.3.1",
