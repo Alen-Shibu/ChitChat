@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 
 const messageSchema = new mongoose.Schema({
     senderId:{
+        //This refers to User model for a mongoose generated Id
         type:mongoose.Schema.Types.ObjectId,
         ref:"User",
         required:true

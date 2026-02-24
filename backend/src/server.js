@@ -11,8 +11,8 @@ const app = express()
 const PORT = process.env.PORT || 3000
 const __dirname = path.resolve();
 
-app.use(express.json())
-app.use(cookieParser())
+app.use(express.json()) //Else req.body will be undefined
+app.use(cookieParser()) //Else we cant use req.cookies for middleware
 
 app.use('/api/auth',authRoutes)
 app.use('/api/messages',messageRoutes)

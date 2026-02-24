@@ -25,6 +25,7 @@ export const signup = async(req,res) => {
             return res.status(400).json({ message: "user already exists" });
         }
 
+        //hashing password for safety
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password,salt)
 
@@ -36,6 +37,8 @@ export const signup = async(req,res) => {
 
         if(newUser){
             await newUser.save()
+            
+            //Generate Token to keep t he user logged in
             generateToken(newUser._id,res)
             res.status(201).json({
                 id:newUser._id,
@@ -61,10 +64,12 @@ export const login = async(req,res) => {
             
         const user = await User.findOne({email})
         if(!user) return res.status(401).json({message:"Invalid Credentials"})
-        
+
+        //Checking with the hashed password
         const isPasswordCorrect = await bcrypt.compare(password,user.password)
         if(!isPasswordCorrect) return res.status(401).json({message:"Invalid Credentials"})
 
+        //Generating token to log in the user and keep ther user logged in
         generateToken(user._id,res)
         res.status(200).json({
             id:user._id,
@@ -80,6 +85,8 @@ export const login = async(req,res) => {
 
 export const logout = async(_,res) => {
     try {
+        //Clearing out the cookie with log the user out.
+        // "" - empty the value of the cookie while {maxAge:0} clears it 
         res.cookie("jwt","",{maxAge:0})
         return res.status(200).json({message:"Logged out succesfully"})
     } catch (error) {

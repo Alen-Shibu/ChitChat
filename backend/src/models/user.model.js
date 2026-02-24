@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
         default:""
     }
 },{
+    //For createdAt and updatedAt
     timestamps:true
 })
 

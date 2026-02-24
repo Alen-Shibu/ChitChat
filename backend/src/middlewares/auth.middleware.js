@@ -12,6 +12,7 @@ export const protectRoute = async(req,res,next) => {
         const user = await User.findById(decoded.userId).select("-password")
         if(!user) return res.status(400).json({message:"User not found"})
 
+        // we set up req.user so that we can get value of user wherever we use this middleware
         req.user = user;
         next();
     } catch (error) {

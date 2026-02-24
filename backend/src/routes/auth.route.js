@@ -10,6 +10,7 @@ router.post("/logout",logout)
 
 router.put("/update-profile",protectRoute,updateProfile)
 
+//This route is just to check if user is authenticated. Useful for page refreshes
 router.get("/check",protectRoute,(req,res)=>{
         res.status(200).json(req.user)
 })

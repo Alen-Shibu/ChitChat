@@ -1,3 +1,4 @@
+//V2 is the optimal version, we rename it to cloudinary for ease of use
 import {v2 as cloudinary} from 'cloudinary'
 
 cloudinary.config({
