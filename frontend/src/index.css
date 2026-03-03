@@ -1,1 +1,247 @@
 @import "tailwindcss";
+
+/* ============================================================
+   SIGNUP PAGE STYLES — Dark theme matching App
+   Uses Tailwind for consistency with main app design
+   ============================================================ */
+
+/* ---------- CSS Variables — Dark Theme ---------- */
+:root {
+  --signup-accent:      #a78bfa;
+  --signup-accent-dark: #c4b5fd;
+  --signup-surface:     #1e293b;
+  --signup-input-bg:    #0f172a;
+  --signup-border:      #334155;
+  --signup-text:        #e2e8f0;
+  --signup-subtle:      #94a3b8;
+  --signup-panel-bg:    #0f172a;
+  --signup-panel-text:  #e2e8f0;
+}
+
+/* ---------- Root / Layout ---------- */
+.signup-root {
+  @apply relative min-h-screen flex items-center justify-center overflow-hidden;
+  background-color: transparent;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.signup-blob {
+  @apply absolute rounded-full pointer-events-none;
+  filter: blur(90px);
+  opacity: 0.15;
+  display: none;
+}
+.signup-blob--1 {
+  @apply w-96 h-96 -top-20 -left-20;
+  background: radial-gradient(circle, #a855f7, transparent 70%);
+}
+.signup-blob--2 {
+  @apply w-80 h-80 bottom-10 right-10;
+  background: radial-gradient(circle, #fbbf24, transparent 70%);
+}
+
+/* ---------- Card ---------- */
+.signup-card {
+  @apply relative z-10 flex w-full max-w-4xl rounded-2xl overflow-hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 50px rgba(139, 92, 246, 0.1);
+  min-height: 600px;
+}
+
+/* ---------- Left Branding Panel ---------- */
+.signup-panel {
+  @apply relative hidden md:flex flex-col justify-between p-10 overflow-hidden;
+  width: 42%;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  color: var(--signup-panel-text);
+}
+.signup-panel__logo {
+  @apply flex items-center gap-2 font-semibold text-lg tracking-tight;
+}
+.signup-panel__logo-icon {
+  @apply text-purple-400 text-xl;
+}
+.signup-panel__logo-name {
+  @apply text-purple-300 text-xl font-semibold;
+}
+.signup-panel__copy {
+  @apply flex flex-col gap-4;
+}
+.signup-panel__headline {
+  @apply text-4xl leading-tight text-white font-semibold;
+}
+.signup-panel__sub {
+  @apply text-sm leading-relaxed;
+  color: rgba(226, 232, 240, 0.65);
+  max-width: 26ch;
+}
+.signup-panel__orbs {
+  @apply absolute bottom-0 left-0 w-full h-64 pointer-events-none;
+}
+.signup-panel__orb {
+  @apply absolute rounded-full;
+  filter: blur(50px);
+}
+.signup-panel__orb--a {
+  @apply w-48 h-48 -bottom-10 -left-10;
+  background: rgba(168, 85, 247, 0.25);
+}
+.signup-panel__orb--b {
+  @apply w-32 h-32 bottom-16 left-24;
+  background: rgba(99, 102, 241, 0.2);
+}
+.signup-panel__orb--c {
+  @apply w-24 h-24 bottom-4 left-10;
+  background: rgba(139, 92, 246, 0.15);
+}
+
+/* ---------- Right Form Panel ---------- */
+.signup-form-panel {
+  @apply flex-1 flex items-center justify-center p-8 md:p-12;
+  background: linear-gradient(135deg, #1e293b 0%, #172554 100%);
+}
+.signup-form-panel__inner {
+  @apply w-full max-w-sm flex flex-col gap-6;
+}
+
+/* ---------- Form Header ---------- */
+.signup-form-header {
+  @apply flex flex-col gap-1;
+}
+.signup-form-header__title {
+  @apply text-2xl font-semibold tracking-tight;
+  color: var(--signup-text);
+}
+.signup-form-header__sub {
+  @apply text-sm;
+  color: var(--signup-subtle);
+}
+
+/* ---------- Social Buttons ---------- */
+.signup-social {
+  @apply grid grid-cols-2 gap-3;
+}
+.signup-social__btn {
+  @apply flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-150 cursor-pointer;
+  background: rgba(30, 41, 59, 0.6);
+  color: var(--signup-text);
+  border: 1px solid var(--signup-border);
+}
+.signup-social__btn:hover {
+  background: rgba(51, 65, 85, 0.8);
+  border-color: #475569;
+}
+.signup-social__btn:active {
+  @apply scale-95;
+}
+
+/* ---------- Divider ---------- */
+.signup-divider {
+  @apply flex items-center gap-3;
+}
+.signup-divider__line {
+  @apply flex-1 h-px;
+  background: var(--signup-border);
+}
+.signup-divider__text {
+  @apply text-xs font-medium;
+  color: var(--signup-subtle);
+}
+
+/* ---------- Form ---------- */
+.signup-form {
+  @apply flex flex-col gap-4;
+}
+.signup-field {
+  @apply flex flex-col gap-1.5;
+}
+.signup-field__label {
+  @apply text-xs font-medium tracking-wide uppercase;
+  color: var(--signup-subtle);
+  letter-spacing: 0.06em;
+}
+.signup-field__wrap {
+  @apply relative flex items-center;
+}
+.signup-field__icon {
+  @apply absolute left-3.5 flex items-center pointer-events-none;
+  color: var(--signup-subtle);
+}
+.signup-field__input {
+  @apply w-full rounded-lg pl-10 pr-4 py-2.5 text-sm outline-none transition-all duration-150;
+  background: var(--signup-input-bg);
+  border: 1.5px solid var(--signup-border);
+  color: var(--signup-text);
+}
+.signup-field__input::placeholder {
+  color: #64748b;
+}
+.signup-field__input:focus {
+  background: rgba(15, 23, 42, 0.8);
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
+}
+.signup-field__eye {
+  @apply absolute right-3.5 flex items-center justify-center cursor-pointer rounded-md p-0.5 transition-colors duration-150;
+  color: var(--signup-subtle);
+  background: transparent;
+  border: none;
+}
+.signup-field__eye:hover {
+  color: var(--signup-accent);
+}
+
+/* ---------- Terms ---------- */
+.signup-terms {
+  @apply flex items-start gap-2.5 cursor-pointer;
+}
+.signup-terms__check {
+  @apply mt-0.5 rounded accent-purple-400 cursor-pointer;
+  background-color: var(--signup-input-bg);
+  border: 1px solid var(--signup-border);
+}
+.signup-terms__text {
+  @apply text-xs leading-relaxed;
+  color: var(--signup-subtle);
+}
+
+/* ---------- Submit Button ---------- */
+.signup-btn {
+  @apply flex items-center justify-center gap-2 w-full rounded-lg py-3 text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer mt-1;
+  background: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%);
+  color: #000;
+  border: none;
+  letter-spacing: 0.03em;
+}
+.signup-btn:hover {
+  background: linear-gradient(135deg, #c4b5fd 0%, #d8b4fe 100%);
+  @apply -translate-y-0.5;
+  box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
+}
+.signup-btn:active {
+  @apply translate-y-0 scale-[0.98];
+  box-shadow: none;
+}
+
+/* ---------- Links ---------- */
+.signup-link {
+  @apply font-medium underline underline-offset-2 transition-colors duration-150;
+  color: var(--signup-accent);
+}
+.signup-link:hover {
+  color: var(--signup-accent-dark);
+}
+
+/* Label row: label on left, "Forgot password?" on right */
+.login-field__labelrow {
+  @apply flex items-center justify-between;
+}
+
+/* Forgot password link — subtler than the default signup-link */
+.login-forgot {
+  @apply text-xs transition-colors duration-150;
+  color: var(--signup-subtle);
+  text-decoration: none;
+}
+.login-forgot:hover {
+  color: var(--signup-accent);
+}
