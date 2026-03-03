@@ -2,6 +2,7 @@ import express from 'express'
 import 'dotenv/config'
 import path from 'path'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 
 import authRoutes from './routes/auth.route.js'
 import messageRoutes from './routes/message.route.js'
@@ -13,6 +14,7 @@ const __dirname = path.resolve();
 
 app.use(express.json()) //Else req.body will be undefined
 app.use(cookieParser()) //Else we cant use req.cookies for middleware
+app.use(cors({origin:process.env.CLIENT_URL,credentials:true}))
 
 app.use('/api/auth',authRoutes)
 app.use('/api/messages',messageRoutes)
