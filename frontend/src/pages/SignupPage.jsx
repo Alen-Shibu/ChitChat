@@ -12,6 +12,8 @@ export default function SignupPage() {
     signup(formData)
   }
 
+  const [showPassword, setShowPassword] = useState(false)
+
   return (
     <div className="signup-root">
       {/* Decorative blobs - match App theme */}
@@ -144,23 +146,35 @@ export default function SignupPage() {
                   </span>
                   <input
                     id="password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     value={formData.password}
                     onChange={(e) => setFormData({...formData,password: e.target.value})}
                     placeholder="Enter Password"
                     className="signup-field__input"
                   />
-                  <button
-                    type="button"
-                    className="signup-field__eye"
-                    tabIndex={-1}
-                    aria-label="Toggle password visibility"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
-                      <circle cx="12" cy="12" r="3"/>
-                    </svg>
-                  </button>
+                    <button
+                      type="button"
+                      className="signup-field__eye"
+                      tabIndex={-1}
+                      aria-label="Toggle password visibility"
+                      onClick={() => setShowPassword(prev => !prev)}
+                    >
+                      {showPassword ? (
+                        // Crossed eye (password visible)
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19C5 19 2 12 2 12a21.77 21.77 0 0 1 5.06-6.94"/>
+                          <path d="M1 1l22 22"/>
+                          <path d="M9.9 4.24A9.12 9.12 0 0 1 12 5c7 0 10 7 10 7a21.77 21.77 0 0 1-3.28 4.36"/>
+                          <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                      ) : (
+                        // Normal eye (password hidden)
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
+                          <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                      )}
+                    </button> 
                 </div>
               </div>
 
