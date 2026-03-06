@@ -12,7 +12,8 @@ const app = express()
 const PORT = process.env.PORT || 3000
 const __dirname = path.resolve();
 
-app.use(express.json()) //Else req.body will be undefined
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true })); //Else req.body will be undefined
 app.use(cookieParser()) //Else we cant use req.cookies for middleware
 app.use(cors({origin:process.env.CLIENT_URL,credentials:true}))
 
