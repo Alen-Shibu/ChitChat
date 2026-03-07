@@ -39,7 +39,7 @@ export const sendMessage = async(req,res) => {
         const {text,image} = req.body;
         const senderId = req.user.id
         const receiverId = req.params.id
-        if(!text || !image) return res.status(400).json({message:"Text or Image is required"})
+        if(!text && !image) return res.status(400).json({message:"Text or Image is required"})
 
         //Incase of an image,uploading it to cloudinary to send it
         let imageUrl;
