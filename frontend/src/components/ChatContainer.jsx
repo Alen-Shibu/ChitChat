@@ -26,41 +26,33 @@ function ChatContainer() {
   return (
     <>
       <ChatHeader />
-      <div className="flex-1 px-6 overflow-y-auto py-8">
+      <div className="chat-messages">
         {messages.length > 0 && !isMessagesLoading ? (
-          <div className="max-w-3xl mx-auto space-y-6">
+          <div className="chat-messages__inner">
             {messages.map((msg) => {
-  const isMe = msg.senderId === authUser._id;
-
-  return (
-    <div
-      key={msg._id}
-      className={`flex w-full mb-4 ${isMe ? "justify-end" : "justify-start"}`}
-    >
-      <div
-        className={`max-w-[70%] px-4 py-3 rounded-2xl border shadow-sm ${
-          isMe
-            ? "bg-cyan-600 text-white border-cyan-500"
-            : "bg-slate-800 text-slate-200 border-slate-700"
-        }`}
-      >
-        {msg.image && (
-          <img
-            src={msg.image}
-            alt="Shared"
-            className="rounded-lg mb-2 max-h-60 object-cover"
-          />
-        )}
-
-        {msg.text && <p className="text-sm leading-relaxed">{msg.text}</p>}
-
-        <p className="text-[11px] mt-2 opacity-70 text-right">
-          {new Date(msg.createdAt).toISOString().slice(11, 16)}
-        </p>
-      </div>
-    </div>
-  );
-})}
+              const isMe = msg.senderId === authUser._id;
+              return (
+                <div
+                  key={msg._id}
+                  className={`chat-bubble-row ${isMe ? "chat-bubble-row--me" : "chat-bubble-row--them"}`}
+                >
+                  <div className={`chat-bubble ${isMe ? "chat-bubble--me" : "chat-bubble--them"}`}>
+                    {msg.image && (
+                      <img
+                        src={msg.image}
+                        alt="Shared"
+                        className="chat-bubble__image"
+                      />
+                    )}
+                    {msg.text && <p className="chat-bubble__text">{msg.text}</p>}
+                    <p className="chat-bubble__time">
+                      {new Date(msg.createdAt).toISOString().slice(11, 16)}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+            <div ref={messagesEndRef} />
           </div>
         ) : isMessagesLoading ? (
           <MessagesLoadingSkeleton />
@@ -68,7 +60,6 @@ function ChatContainer() {
           <NoChatHistoryPlaceholder name={selectedUser.fullName} />
         )}
       </div>
-
       <MessageInput />
     </>
   );
