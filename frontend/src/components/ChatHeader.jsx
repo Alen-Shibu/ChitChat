@@ -9,33 +9,29 @@ function ChatHeader() {
     const handleEscKey = (event) => {
       if (event.key === "Escape") setSelectedUser(null);
     };
-
     window.addEventListener("keydown", handleEscKey);
-
-    // cleanup function
     return () => window.removeEventListener("keydown", handleEscKey);
   }, [setSelectedUser]);
 
   return (
-    <div
-      className="flex justify-between items-center bg-slate-800/50 border-b
-   border-slate-700/50 max-h-21 px-6 flex-1"
-    >
-      <div className="flex items-center space-x-3">
+    <div className="chat-header">
+      <div className="chat-header__user">
         <div className="avatar online">
-          <div className="w-12 rounded-full">
+          <div className="chat-header__avatar">
             <img src={selectedUser.profilePic || "/avatar.png"} alt={selectedUser.fullName} />
           </div>
         </div>
-
         <div>
-          <h3 className="text-slate-200 font-medium">{selectedUser.fullName}</h3>
-          <p className="text-slate-400 text-sm">Online</p>
+          <h3 className="chat-header__name">{selectedUser.fullName}</h3>
+          <span className="chat-header__status">
+            <span className="chat-header__status-dot" />
+            Online
+          </span>
         </div>
       </div>
 
-      <button onClick={() => setSelectedUser(null)}>
-        <XIcon className="w-5 h-5 text-slate-400 hover:text-slate-200 transition-colors cursor-pointer" />
+      <button className="chat-header__close" onClick={() => setSelectedUser(null)}>
+        <XIcon className="w-4 h-4" />
       </button>
     </div>
   );

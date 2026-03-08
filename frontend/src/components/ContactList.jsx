@@ -16,17 +16,18 @@ function ContactList() {
       {allContacts.map((contact) => (
         <div
           key={contact._id}
-          className="bg-cyan-500/10 p-4 rounded-lg cursor-pointer hover:bg-cyan-500/20 transition-colors"
+          className="chat-user-item"
           onClick={() => setSelectedUser(contact)}
         >
-          <div className="flex items-center gap-3">
-            {/* TODO: MAKE IT WORK WITH SOCKET */}
-            <div className={`avatar online`}>
-              <div className="size-12 rounded-full">
-                <img src={contact.profilePic || "/avatar.png"} />
-              </div>
+          {/* TODO: MAKE IT WORK WITH SOCKET */}
+          <div className="avatar online">
+            <div className="chat-user-item__avatar">
+              <img src={contact.profilePic || "/avatar.png"} />
             </div>
-            <h4 className="text-slate-200 font-medium">{contact.fullName}</h4>
+          </div>
+          <div className="chat-user-item__info">
+            <h4 className="chat-user-item__name">{contact.fullName}</h4>
+            <span className="chat-user-item__sub">Available</span>
           </div>
         </div>
       ))}

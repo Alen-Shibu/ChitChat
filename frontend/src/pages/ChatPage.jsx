@@ -1,4 +1,4 @@
-import {useChatStore} from '../stores/useChatStore.js'
+import { useChatStore } from '../stores/useChatStore.js'
 
 import ProfileHeader from "../components/ProfileHeader";
 import ActiveTabSwitch from "../components/ActiveTabSwitch";
@@ -11,21 +11,26 @@ function ChatPage() {
   const { activeTab, selectedUser } = useChatStore();
 
   return (
-    <div className="relative w-screen max-w-6xl min-h-screen mx-auto p-4 flex space-x-4">
-        {/* LEFT SIDE */}
-        <div className="w-64 bg-slate-800/50 backdrop-blur-sm flex flex-col">
+    <div className="chat-page">
+      {/* Ambient blobs — matches signup/login theme */}
+      <div className="signup-blob signup-blob--1" />
+      <div className="signup-blob signup-blob--2" />
+
+      <div className="chat-layout">
+        {/* LEFT SIDEBAR */}
+        <div className="chat-sidebar">
           <ProfileHeader />
           <ActiveTabSwitch />
-
-          <div className="flex-1 overflow-y-auto p-4 space-y-2">
+          <div className="chat-sidebar__list">
             {activeTab === "chats" ? <ChatsList /> : <ContactList />}
           </div>
         </div>
 
-        {/* RIGHT SIDE */}
-        <div className="flex-1 flex flex-col bg-slate-900/50 backdrop-blur-sm">
+        {/* RIGHT MAIN PANEL */}
+        <div className="chat-main">
           {selectedUser ? <ChatContainer /> : <NoConversationPlaceholder />}
         </div>
+      </div>
     </div>
   );
 }

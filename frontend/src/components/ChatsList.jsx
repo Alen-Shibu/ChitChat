@@ -18,17 +18,18 @@ function ChatsList() {
       {chats.map((chat) => (
         <div
           key={chat._id}
-          className="bg-cyan-500/10 p-4 rounded-lg cursor-pointer hover:bg-cyan-500/20 transition-colors"
+          className="chat-user-item"
           onClick={() => setSelectedUser(chat)}
         >
-          <div className="flex items-center gap-3">
-            {/* TODO: FIX THIS ONLINE STATUS AND MAKE IT WORK WITH SOCKET */}
-            <div className={`avatar online`}>
-              <div className="size-12 rounded-full">
-                <img src={chat.profilePic || "/avatar.png"} alt={chat.fullName} />
-              </div>
+          {/* TODO: FIX THIS ONLINE STATUS AND MAKE IT WORK WITH SOCKET */}
+          <div className="avatar online">
+            <div className="chat-user-item__avatar">
+              <img src={chat.profilePic || "/avatar.png"} alt={chat.fullName} />
             </div>
-            <h4 className="text-slate-200 font-medium truncate">{chat.fullName}</h4>
+          </div>
+          <div className="chat-user-item__info">
+            <h4 className="chat-user-item__name">{chat.fullName}</h4>
+            <span className="chat-user-item__sub">Tap to chat</span>
           </div>
         </div>
       ))}
