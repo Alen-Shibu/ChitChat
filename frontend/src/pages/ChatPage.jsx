@@ -1,5 +1,4 @@
 import { useChatStore } from '../stores/useChatStore.js'
-
 import ProfileHeader from "../components/ProfileHeader";
 import ActiveTabSwitch from "../components/ActiveTabSwitch";
 import ChatsList from "../components/ChatsList";

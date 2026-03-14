@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthStore } from "../stores/useAuthStore.js";
 import { LoaderIcon } from "lucide-react";
+import { Link } from "react-router";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({email:"",password:""})
@@ -41,14 +42,14 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Right panel — form */}
+        {/* Right panel — form */} 
         <div className="signup-form-panel">
           <div className="signup-form-panel__inner">
             <div className="signup-form-header">
               <h2 className="signup-form-header__title">Sign in</h2>
               <p className="signup-form-header__sub">
                 Don't have an account?{" "}
-                <a href="/signup" className="signup-link">Create one</a>
+                <Link to="/signup" className="signup-link">Create One</Link>
               </p>
             </div>
 
@@ -107,9 +108,6 @@ export default function LoginPage() {
                   <label htmlFor="password" className="signup-field__label">
                     Password
                   </label>
-                  <a href="/forgot-password" className="login-forgot">
-                    Forgot password?
-                  </a>
                 </div>
                 <div className="signup-field__wrap">
                   <span className="signup-field__icon">
@@ -153,7 +151,7 @@ export default function LoginPage() {
               </div>
 
               {/* Submit */}
-              <button type="submit" className="signup-btn">
+              <button type="submit" className="signup-btn" disabled={isLoggingIn}>
                 <span>{isLoggingIn ? (<LoaderIcon className="w-full h-5 animate-spin text-center" />) : ("Logging In")}</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7"/>

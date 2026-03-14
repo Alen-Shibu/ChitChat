@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {useAuthStore} from '../stores/useAuthStore.js'
 import { LoaderIcon } from "lucide-react";
+import { Link } from "react-router";
 
 export default function SignupPage() {
 
@@ -53,9 +54,7 @@ export default function SignupPage() {
               <h2 className="signup-form-header__title">Create account</h2>
               <p className="signup-form-header__sub">
                 Already have one?{" "}
-                <a href="/login" className="signup-link">
-                  Sign in
-                </a>
+                <Link to="/login" className="signup-link">Already have one</Link>
               </p>
             </div>
 

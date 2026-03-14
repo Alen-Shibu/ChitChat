@@ -7,10 +7,10 @@ function ChatHeader() {
 
   useEffect(() => {
     const handleEscKey = (event) => {
-      if (event.key === "Escape") setSelectedUser(null);
+    if(event.key === "Escape") setSelectedUser(null)
     };
-    window.addEventListener("keydown", handleEscKey);
-    return () => window.removeEventListener("keydown", handleEscKey);
+    window.addEventListener("keydown",handleEscKey)
+    return () => window.removeEventListener("keydown",handleEscKey)
   }, [setSelectedUser]);
 
   return (
