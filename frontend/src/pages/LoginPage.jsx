@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuthStore } from "../stores/useAuthStore.js";
+import { useAuthStore } from "../stores/useAuthStore.js"
 import { LoaderIcon } from "lucide-react";
 import { Link } from "react-router";
 
