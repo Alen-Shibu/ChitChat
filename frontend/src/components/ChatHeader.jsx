@@ -1,9 +1,9 @@
-import { XIcon } from "lucide-react";
+import { XIcon, MenuIcon } from "lucide-react";
 import { useChatStore } from "../stores/useChatStore";
 import { useEffect } from "react";
 import { useAuthStore } from "../stores/useAuthStore";
 
-function ChatHeader() {
+function ChatHeader({ onToggleSidebar }) {
   const { selectedUser, setSelectedUser } = useChatStore();
   const {onlineUsers} = useAuthStore()
 
@@ -32,9 +32,14 @@ function ChatHeader() {
         </div>
       </div>
 
-      <button className="chat-header__close" onClick={() => setSelectedUser(null)}>
-        <XIcon className="w-4 h-4" />
-      </button>
+      <div className="flex items-center gap-2">
+        <button className="chat-header__menu md:hidden" onClick={onToggleSidebar}>
+          <MenuIcon className="w-4 h-4" />
+        </button>
+        <button className="chat-header__close" onClick={() => setSelectedUser(null)}>
+          <XIcon className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   );
 }

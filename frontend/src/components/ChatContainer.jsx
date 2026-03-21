@@ -6,7 +6,7 @@ import NoChatHistoryPlaceholder from "./NoChatHistoryPlaceholder";
 import MessageInput from "./MessageInput";
 import MessagesLoadingSkeleton from "./MessagesLoadingSkeleton";
 
-function ChatContainer() {
+function ChatContainer({ onToggleSidebar }) {
   const { selectedUser, getMessagesByUserId, messages, isMessagesLoading,subscribeToMessages, unsubscribeFromMessages } = useChatStore();
   const { authUser } = useAuthStore();
   const messagesEndRef = useRef(null);
@@ -28,7 +28,7 @@ function ChatContainer() {
 
   return (
     <>
-      <ChatHeader />
+      <ChatHeader onToggleSidebar={onToggleSidebar} />
       <div className="chat-messages">
         {messages.length > 0 && !isMessagesLoading ? (
           <div className="chat-messages__inner">

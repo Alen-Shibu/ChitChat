@@ -3,13 +3,21 @@ import { useChatStore } from "../stores/useChatStore.js";
 import UsersLoadingSkeleton from "./UsersLoadingSkeleton";
 import { useAuthStore } from "../stores/useAuthStore.js";
 
-function ContactList() {
+function ContactList({ onToggleSidebar }) {
   const { getAllContacts, allContacts, setSelectedUser, isUsersLoading } = useChatStore();
   const {onlineUsers} = useAuthStore()
 
   useEffect(() => {
     getAllContacts();
   }, [getAllContacts]);
+
+  const handleUserSelect = (contact) => {
+    setSelectedUser(contact);
+    // Close sidebar on mobile when user is selected
+    if (window.innerWidth <= 768 && onToggleSidebar) {
+      onToggleSidebar();
+    }
+  };
 
   if (isUsersLoading) return <UsersLoadingSkeleton />;
 

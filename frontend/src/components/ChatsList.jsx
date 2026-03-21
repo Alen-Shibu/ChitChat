@@ -4,13 +4,21 @@ import UsersLoadingSkeleton from "./UsersLoadingSkeleton";
 import NoChatsFound from "./NoChatsFound";
 import { useAuthStore } from "../stores/useAuthStore.js";
 
-function ChatsList() {
+function ChatsList({ onToggleSidebar }) {
   const { getMyChatPartners, chats, isUsersLoading, setSelectedUser } = useChatStore();
   const {onlineUsers} = useAuthStore()
 
   useEffect(() => {
     getMyChatPartners();
   }, [getMyChatPartners]);
+
+  const handleUserSelect = (chat) => {
+    setSelectedUser(chat);
+    // Close sidebar on mobile when user is selected
+    if (window.innerWidth <= 768 && onToggleSidebar) {
+      onToggleSidebar();
+    }
+  };
 
   if (isUsersLoading) return <UsersLoadingSkeleton />;
   if (chats.length === 0) return <NoChatsFound />;
@@ -21,7 +29,7 @@ function ChatsList() {
         <div
           key={chat._id}
           className="chat-user-item"
-          onClick={() => setSelectedUser(chat)}
+          onClick={() => handleUserSelect(chat)}
         >
           <div className="chat-user-item__avatar">
             <img src={chat.profilePic || "/avatar.png"} alt={chat.fullName} />

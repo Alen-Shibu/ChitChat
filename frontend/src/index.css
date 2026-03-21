@@ -271,6 +271,14 @@ html, body {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 24px 60px rgba(0,0,0,0.4);
 }
 
+/* Mobile: full screen layout */
+@media (max-width: 768px) {
+  .chat-layout {
+    @apply mx-0 my-0 w-screen h-screen;
+    border-radius: 0;
+  }
+}
+
 /* ---- Sidebar ---- */
 .chat-sidebar {
   @apply flex flex-col shrink-0;
@@ -278,6 +286,22 @@ html, body {
   background: rgba(255,255,255,0.03);
   border-right: 1px solid rgba(255,255,255,0.06);
   backdrop-filter: blur(12px);
+}
+
+/* Mobile: sidebar hidden by default, overlay when open */
+@media (max-width: 768px) {
+  .chat-sidebar {
+    @apply fixed left-0 top-0 h-full z-50 transform -translate-x-full transition-transform duration-300;
+    width: 16rem;
+    display: none;
+  }
+  .chat-sidebar--open {
+    @apply translate-x-0;
+    display: flex;
+  }
+  .chat-layout {
+    @apply mx-0 my-0 w-screen h-screen;
+  }
 }
 
 .chat-sidebar__list {
@@ -294,6 +318,13 @@ html, body {
 .chat-main {
   @apply flex-1 flex flex-col overflow-hidden;
   background: rgba(255,255,255,0.02);
+}
+
+/* Mobile: main panel full width when sidebar hidden */
+@media (max-width: 768px) {
+  .chat-main {
+    @apply w-full;
+  }
 }
 
 /* ---- Profile Header ---- */
@@ -414,6 +445,11 @@ html, body {
   border-bottom: 1px solid rgba(255,255,255,0.06);
   background: rgba(255,255,255,0.02);
 }
+@media (max-width: 768px) {
+  .chat-header {
+    @apply px-4 py-2;
+  }
+}
 .chat-header__user {
   @apply flex items-center gap-3;
 }
@@ -452,10 +488,25 @@ html, body {
   color: rgba(255,255,255,0.8);
   background: rgba(255,255,255,0.06);
 }
+.chat-header__menu {
+  @apply flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-150 cursor-pointer;
+  color: rgba(255,255,255,0.35);
+  background: transparent;
+  border: none;
+}
+.chat-header__menu:hover {
+  color: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.06);
+}
 
 /* ---- Messages area ---- */
 .chat-messages {
   @apply flex-1 overflow-y-auto px-6 py-6;
+}
+@media (max-width: 768px) {
+  .chat-messages {
+    @apply px-4 py-4;
+  }
 }
 .chat-messages::-webkit-scrollbar { width: 4px; }
 .chat-messages::-webkit-scrollbar-track { background: transparent; }
@@ -479,6 +530,11 @@ html, body {
 }
 .chat-bubble {
   @apply max-w-[68%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed;
+}
+@media (max-width: 768px) {
+  .chat-bubble {
+    @apply max-w-[85%];
+  }
 }
 .chat-bubble--me {
   background: var(--signup-accent);
@@ -512,6 +568,11 @@ html, body {
 .chat-input-bar {
   @apply px-6 pb-5 pt-3 shrink-0;
   border-top: 1px solid rgba(255,255,255,0.05);
+}
+@media (max-width: 768px) {
+  .chat-input-bar {
+    @apply px-4 pb-4 pt-2;
+  }
 }
 .chat-input-bar__preview-wrap {
   @apply max-w-3xl mx-auto mb-3;
