@@ -9,7 +9,7 @@ import messageRoutes from './routes/message.route.js'
 import {connectDB} from './lib/db.js'
 import { app, server } from './lib/socket.js'
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 const __dirname = path.resolve();
 
 app.use(express.json({ limit: "10mb" }));
@@ -31,5 +31,5 @@ if(process.env.NODE_ENV == "production"){
 
 server.listen(PORT,()=>{
     connectDB()
-    console.log(`App is running on http://localhost:3000/`)
+    console.log(`App is running on http://localhost:5000/`)
 })
