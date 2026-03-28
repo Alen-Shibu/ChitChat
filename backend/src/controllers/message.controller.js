@@ -79,7 +79,7 @@ export const getAllChats = async(req,res) => {
             ]
         })
 
-        //We use spread operator [... ] to turn the set back ibnto array so we could use mongoose functions on it
+        //We use spread operator [... ] to turn the set back into array so we could use mongoose functions on it
         //We use Set to remove duplicates
         //mapping each message and checking if we are the sender to get the other person's id 
         const chatPartnerId = [...new Set(messages.map((msg) => msg.senderId.toString() === loggedInUserId.toString() ? msg.receiverId.toString() : msg.senderId.toString()))]
